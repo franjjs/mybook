@@ -1,25 +1,32 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import {Home} from './routes/Home'
+import {Books} from './routes/Books'
+import {About} from './routes/About'
+import {NoMatch} from './routes/NoMatch'
+import {Layout} from './components/Layout'
+import {NavigationBar, NavigationOption} from './components/NavigationBar'
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  <React.Fragment>j
+    <NavigationBar brand="Francisco Javier Juan Sánchez">
+      <NavigationOption label="Home" href="/" route={Home} />
+      <NavigationOption label="Books" href="/books" route={Home} />
+      <NavigationOption label="About" href="/about" route={Home} />
+    </NavigationBar>
+    <Layout>
+      <Router>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/books" component={Books} />
+          <Route path="/about" component={About} />
+          <Route component={NoMatch} />
+        </Switch>
+      </Router>
+    </Layout>
+  </React.Fragment>
   );
 }
 
